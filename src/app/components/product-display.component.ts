@@ -15,6 +15,15 @@ export class ProductDisplayComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.productService.requestProducts();
+    this.productService.fakeAsyncWait$.subscribe({
+      next: (res) => {
+        if (res) {
+          console.log('requesting products!');
+          this.productService.requestProducts();
+        } else {
+          console.log('waiting to request');
+        }
+      },
+    });
   }
 }

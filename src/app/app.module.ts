@@ -13,11 +13,13 @@ import { ProductEffects } from './+state/product.effects';
   declarations: [AppComponent, ProductDisplayComponent],
   imports: [
     BrowserModule,
-    StoreDevtoolsModule.instrument({}),
     StoreModule.forRoot({
       [slice.name]: reducer,
     }),
     EffectsModule.forRoot([ProductEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
