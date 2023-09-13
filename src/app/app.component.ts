@@ -10,8 +10,10 @@ export class AppComponent implements OnInit {
   constructor(private productService: ProductFacadeService) {}
 
   public ngOnInit(): void {
-    setTimeout(() => {
-      this.productService.triggerRequests();
-    }, 2000);
+    if (this.productService.isWaitingForFakeObservable) {
+      setTimeout(() => {
+        this.productService.triggerRequests();
+      }, 2000);
+    }
   }
 }
